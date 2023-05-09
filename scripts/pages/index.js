@@ -48,11 +48,12 @@
     };
 
     // Lien entre pages
-    async function displayLogo(){
-        const logo = document.querySelector(".logo")
-        const aLogo = document.createElement( 'a' )
-        aLogo.appendChild(logo)
-    }
+    // async function displayLogo(){
+    //     const logo = document.querySelector(".logo")
+    //     const aLogo = document.createElement( 'a' )
+    //     aLogo.appendChild(logo)
+        
+    // }
     
     init();
     
