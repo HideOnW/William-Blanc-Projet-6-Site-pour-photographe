@@ -6,15 +6,90 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
 }
 
-.contact_button {
+.photograph-photo {
+    background-color: #ffffff;
+    height: auto;
+    margin: 20px 100px;
+    display: flex;
+    flex-direction: column;
+}
+.filtre{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.filtre p{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.photo{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.photo article{
+    width: 30%;
+    background-color: #FAFAFA;
+}
+
+.photo article img{
+    width: 100%;
+}
+
+.photo article div{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0px 10px;
+}
+
+.photograph-header img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 6px, rgba(0, 0, 0, 0.4) 0px -3px 6px;
+ 
+}
+
+
+.contact_button{
     font-size: 20px;
     font-weight: bold;
     color: white;
     padding: 11px;
     width: 170px;
     height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filtre_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 50px;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;

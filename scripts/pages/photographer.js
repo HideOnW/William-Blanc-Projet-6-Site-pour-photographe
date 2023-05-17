@@ -5,11 +5,11 @@ async function getPhotographers() {
     .then((response) => response.json()) .then((data) => data); } 
     
 async function displayData(photographers) {
-    const photographersSection = document.querySelector(".Ph_description");
+    const photographersSection = document.querySelector(".photograph-header");
     const photographerModel = photographerFactory(photographers);
     const infoPhotographe = photographerModel.getinfoPhotographe();
-    photographersSection.appendChild(infoPhotographe);
-
+    // photographersSection.appendChild(infoPhotographe);
+    return (photographersSection)
 }
 
 async function init() {

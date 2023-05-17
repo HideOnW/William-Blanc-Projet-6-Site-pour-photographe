@@ -1,4 +1,47 @@
-    // async function getPhotographers() {
+    async function getPhotographers() { 
+        return fetch("../../data/photographers.json") 
+        .then((response) => response.json()) .then((data) => data); } 
+        
+
+    async function displayData(photographers) {
+        const photographersSection = document.querySelector(".photographer_section");
+
+        photographers.forEach((photographer) => {
+            const photographerModel = photographerFactory(photographer);
+            const userCardDOM = photographerModel.getUserCardDOM();
+            photographersSection.appendChild(userCardDOM);
+        });
+    };
+
+    async function init() {
+        // Récupère les datas des photographes
+        const { photographers } = await getPhotographers();
+        displayData(photographers);
+    };
+
+  
+    
+    init();
+    
+
+
+
+
+
+
+
+  // Lien entre pages
+    // async function displayLogo(){
+    //     const logo = document.querySelector(".logo")
+    //     const aLogo = document.createElement( 'a' )
+    //     aLogo.appendChild(logo)
+        
+    // }
+
+
+
+    
+        // async function getPhotographers() {
     //     // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
     //     // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
     //     let photographers = [
@@ -26,34 +69,3 @@
     //         photographers: [...photographers, ...photographers, ...photographers]})
     // }
 
-    async function getPhotographers() { 
-        return fetch("../../data/photographers.json") 
-        .then((response) => response.json()) .then((data) => data); } 
-        
-
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
-
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    };
-
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    };
-
-    // Lien entre pages
-    // async function displayLogo(){
-    //     const logo = document.querySelector(".logo")
-    //     const aLogo = document.createElement( 'a' )
-    //     aLogo.appendChild(logo)
-        
-    // }
-    
-    init();
-    
