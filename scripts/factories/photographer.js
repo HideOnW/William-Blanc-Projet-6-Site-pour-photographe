@@ -36,7 +36,6 @@ function photographerFactory(data) {
 		const urlId = new URLSearchParams(queryString)
 		urlId.set("name", {name})
 		const phId = urlId.get('id')
-		console.log(phId)
 		const header = document.querySelector(".photograph-header")
 		const button = document.querySelector(".contact_button")
 		const div = document.createElement( 'div' )
