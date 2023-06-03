@@ -1,7 +1,7 @@
 function photographerFactory(data) {
     const { name, city, country, portrait, tagline, price, id } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `assets/photographers/Photographers-ID-Photos/${portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
@@ -59,12 +59,33 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM, getinfoPhotographe}
 }
 
-	//   <div class="photograph-header">
-    //     <div class ="PhDescription">
-    //       <h2>Mimi Keel</h2>
-    //       <h3>London, UK</h3>
-    //       <p> Voir le beau dans le quotidien</p>
-    //     </div>
-    //     <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    //     <img src="./assets/photographers/MimiKeel.jpg">
-    //   </div>
+function mediaFactory(data) {
+
+	const { id, photographerId, title, image, likes, date, price, name } = data;
+
+	const picture = `assets/photographers/${name}/${image}`;
+	console.log(picture)
+
+	function getInfoMedia() {
+		const a = document.createElement('a');
+		// a.setAttribute("onclick", openLightbox())
+		const article = document.createElement('article');
+		const image = document.createElement('img');
+		image.setAttribute("src", picture)
+		const div1 = document.createElement('div');
+		const h3 = document.createElement('h3');
+		h3.textContent = title
+		const div2 = document.createElement('div');
+		const p = document.createElement('p')
+		p.textContent = likes
+		a.appendChild(article)
+		article.appendChild(image)
+		article.appendChild(div1)
+		div1.appendChild(title)
+		div1.appendChild(div2)
+		div2.appendChild(p)
+		return (a)
+		}
+
+		return getInfoMedia
+	}

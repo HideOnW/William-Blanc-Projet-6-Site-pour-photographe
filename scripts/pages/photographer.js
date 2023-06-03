@@ -13,6 +13,8 @@ function getParamIdUrl() {
     return phId;
 }
 
+
+
 function getPhotographerById (photographers, idUrl) {
     const photographer = photographers.find((photographe) => +photographe.id === +idUrl);
     console.log(photographer)
@@ -20,28 +22,37 @@ function getPhotographerById (photographers, idUrl) {
     
 }
 
-function getMediaById (media, idUrl) {
-    const medias = media.find((media) => +media.photographerId === +idUrl).each(media);
-    console.log(medias)
-    return (medias)
+
+
+function getMediasById (media, idUrl) {
+    const medias = media.filter((media) => +media.photographerId === +idUrl);
+    return medias
 }
 
-async function displayData(photographer, idUrl, media) {
 
+
+
+async function displayData(photographer, idUrl, medias) {
 //Photograph
     const photographersSection = document.querySelector(".photograph-header");
     const photographerModel = photographerFactory(photographer);
     const infoPhotographe = photographerModel.getinfoPhotographe();
+    
 
 //Media 
-    // const mediaSection = docuement.querySelector(".photo")
-    // media.forEach((media) => +media.photographerId === +idUrl {
-    //     const mediaModel = mediaFactory(media);
-    //     const infoMedia = mediaModel.getinfoMedia();
-    //     mediaSection.appendChild(infoMedia);
-    // })
+    const mediaSection = document.querySelector(".photo")
+    medias.forEach((media) => {
+        const mediaModel = mediaFactory(photographer, media);
+        const infoMedia = mediaModel.getInfoMedia();
+        mediaSection.appendChild(infoMedia);
+    })
     return (photographersSection)
 }
+
+
+
+
+
 
 async function init() {
      // Récupère les datas des photographes
@@ -49,8 +60,8 @@ async function init() {
      const { media } = await getPhotographers();
      idUrl = getParamIdUrl();
      const photographer = getPhotographerById (photographers, idUrl);
-     const mediaId = getMediaById (media,idUrl)
-     displayData(photographer, idUrl, media);
+     const medias = getMediasById (media,idUrl)
+     displayData(photographer, idUrl, medias);
     };
 
 
