@@ -1,6 +1,10 @@
-#contact_modal {
-    display: none;
+*{
+    margin: 0px;
+    padding: 0px;
 }
+
+
+
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -41,20 +45,51 @@
     margin-top: 20px;
 }
 
-.photo article{
+.photo a{
     width: 30%;
+    height: auto;
     background-color: #FAFAFA;
 }
 
-.photo article img{
+.photo a article{
     width: 100%;
+    height: auto;
+    background-color: #FAFAFA;
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
 }
 
-.photo article div{
+.photo a article img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.photo a article div{
     display: flex;
+    height: 100%;
     justify-content: space-between;
     flex-direction: row;
-    padding: 0px 10px;
+    padding: 7px 10px;
+}
+
+.photo a article div div{
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.photo a article div div img{
+    width: 17.5px;
+    height: 18.5px;
+    align-self: center;
+    padding-left: 8px;
+
 }
 
 .photograph-header img{
@@ -96,6 +131,16 @@
     cursor: pointer;
 }
 
+#contact_modal {
+    display: none;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    padding-top: 69px;
+    background-color: rgb(255,255,255, 0.3);
+
+}
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -148,4 +193,13 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+/* Section carroussel  */
+
+#media_modal {
+    width: 100%;
+    height: 100px;
+    background-color: red;
+    display: none;
 }

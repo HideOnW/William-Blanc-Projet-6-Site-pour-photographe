@@ -59,32 +59,46 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM, getinfoPhotographe}
 }
 
+
+
+
+
 function mediaFactory(data) {
 
-	const { id, photographerId, title, image, likes, date, price, name } = data;
+	const { id, photographerId, title, image, likes, date, price} = data;
 
-	const picture = `assets/photographers/${name}/${image}`;
-	console.log(picture)
+	const picture = `assets/photographers/${photographerId}/${image}`;
 
 	function getInfoMedia() {
 		const a = document.createElement('a');
-		// a.setAttribute("onclick", openLightbox())
+		// a.setAttribute("onclick", "openLightbox()")
 		const article = document.createElement('article');
-		const image = document.createElement('img');
+		// if (image === true){
+		// 	const image1 = document.createElement('img');	
+		// 	image1.setAttribute("onclick", "displayMedia()");
+		// 	image1.setAttribute("src", picture);
+		// 	console.log("nope")
+		// 	return image1
+		// }
+		const image = document.createElement('img');	
+		image.setAttribute("onclick", "displayMedia()")
 		image.setAttribute("src", picture)
 		const div1 = document.createElement('div');
 		const h3 = document.createElement('h3');
 		h3.textContent = title
 		const div2 = document.createElement('div');
 		const p = document.createElement('p')
+		const image2 = document.createElement('img')
+		image2.setAttribute("src", "assets/icons/heart.svg")	
 		p.textContent = likes
 		a.appendChild(article)
 		article.appendChild(image)
 		article.appendChild(div1)
-		div1.appendChild(title)
+		div1.appendChild(h3)
 		div1.appendChild(div2)
 		div2.appendChild(p)
-		return (a)
+		div2.appendChild(image2)
+		return a
 		}
 
 		return getInfoMedia

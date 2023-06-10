@@ -19,7 +19,6 @@ function getPhotographerById (photographers, idUrl) {
     const photographer = photographers.find((photographe) => +photographe.id === +idUrl);
     console.log(photographer)
     return photographer;
-    
 }
 
 
@@ -37,13 +36,14 @@ async function displayData(photographer, idUrl, medias) {
     const photographersSection = document.querySelector(".photograph-header");
     const photographerModel = photographerFactory(photographer);
     const infoPhotographe = photographerModel.getinfoPhotographe();
-    
+    // photographersSection.appendChild(infoPhotographe)
+
 
 //Media 
     const mediaSection = document.querySelector(".photo")
     medias.forEach((media) => {
-        const mediaModel = mediaFactory(photographer, media);
-        const infoMedia = mediaModel.getInfoMedia();
+        const mediaModel = mediaFactory({media});
+        const infoMedia = mediaModel();
         mediaSection.appendChild(infoMedia);
     })
     return (photographersSection)
