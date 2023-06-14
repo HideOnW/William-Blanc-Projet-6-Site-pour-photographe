@@ -56,7 +56,7 @@
     height: auto;
     background-color: #FAFAFA;
     color: #901C1C;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
 }
 
@@ -89,7 +89,6 @@
     height: 18.5px;
     align-self: center;
     padding-left: 8px;
-
 }
 
 .photograph-header img{
@@ -199,7 +198,39 @@ form input {
 
 #media_modal {
     width: 100%;
-    height: 100px;
-    background-color: red;
+    height: auto;
     display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#cross{
+    position: relative;
+    right: 50px;
+    align-self: flex-start;
+}
+
+#modal-image{
+    width: 900px;
+    height: 900px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#modal-title-id{
+    color:#901C1C;
+    padding: 8px 0px;
+}
+
+#last, #next{
+    width: 100px;
+    height: 50px;
+    background-image: url(../assets/icons/arrow.png);
+    background-repeat: no-repeat;
+    background-size:contain;
+}
+
+#next{
+    rotate: 180deg;
 }

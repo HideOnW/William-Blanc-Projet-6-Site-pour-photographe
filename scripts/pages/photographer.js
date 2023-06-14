@@ -42,7 +42,7 @@ async function displayData(photographer, idUrl, medias) {
 //Media 
     const mediaSection = document.querySelector(".photo")
     medias.forEach((media) => {
-        const mediaModel = mediaFactory({media});
+        const mediaModel = mediaFactory({...media, photographerName:photographer.name});
         const infoMedia = mediaModel();
         mediaSection.appendChild(infoMedia);
     })

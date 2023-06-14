@@ -81,8 +81,10 @@ function mediaFactory(data) {
 		// 	return image1
 		// }
 		const image = document.createElement('img');	
-		image.setAttribute("onclick", "displayMedia()")
+		// image.setAttribute("onclick", "displayMedia()")
 		image.setAttribute("src", picture)
+		image.setAttribute("data-title", title)
+		// image.setAttribute("data-", picture)
 		const div1 = document.createElement('div');
 		const h3 = document.createElement('h3');
 		h3.textContent = title
@@ -98,8 +100,24 @@ function mediaFactory(data) {
 		div1.appendChild(div2)
 		div2.appendChild(p)
 		div2.appendChild(image2)
+
+		addEventListernerToMedia(image)
 		return a
 		}
+
+	function addEventListernerToMedia (mediaElement) {
+		mediaElement.addEventListener("click",function(event){
+			console.log(mediaElement, event)
+			const mediaModal = document.getElementById("media_modal")
+			mediaModal.style.display = "flex";
+			const titleModal = document.getElementById("modal-title-id");
+			titleModal.textContent = event.target.dataset.title;
+			const imageModal = document.getElementById("modal-image");
+			imageModal.setAttribute("src", event.target.currentSrc)
+			// imageModal.textContent = event.target.currentSrc;
+			
+		})
+	}
 
 		return getInfoMedia
 	}
