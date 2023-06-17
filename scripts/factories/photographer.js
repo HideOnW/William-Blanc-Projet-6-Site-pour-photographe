@@ -114,8 +114,7 @@ function mediaFactory(data) {
 			titleModal.textContent = event.target.dataset.title;
 			const imageModal = document.getElementById("modal-image");
 			imageModal.setAttribute("src", event.target.currentSrc)
-			// imageModal.textContent = event.target.currentSrc;
-			
+			const arrow = document 
 		})
 	}
 
