@@ -1,3 +1,6 @@
+let positionActuelle = 0
+const allMedias = []
+
 function photographerFactory(data) {
     const { name, city, country, portrait, tagline, price, id } = data;
 
@@ -65,11 +68,12 @@ function photographerFactory(data) {
 
 function mediaFactory(data) {
 
-	const { id, photographerId, title, image, likes, date, price} = data;
+	const { id, photographerId, title, image, likes, date, price, position} = data;
 
 	const picture = `assets/photographers/${photographerId}/${image}`;
 
 	function getInfoMedia() {
+		allMedias.push(data)
 		const a = document.createElement('a');
 		// a.setAttribute("onclick", "openLightbox()")
 		const article = document.createElement('article');
@@ -81,9 +85,9 @@ function mediaFactory(data) {
 		// 	return image1
 		// }
 		const image = document.createElement('img');	
-		// image.setAttribute("onclick", "displayMedia()")
 		image.setAttribute("src", picture)
 		image.setAttribute("data-title", title)
+		image.setAttribute("data-position", position)
 		// image.setAttribute("data-", picture)
 		const div1 = document.createElement('div');
 		const h3 = document.createElement('h3');
@@ -105,6 +109,7 @@ function mediaFactory(data) {
 		return a
 		}
 
+
 	function addEventListernerToMedia (mediaElement) {
 		mediaElement.addEventListener("click",function(event){
 			console.log(mediaElement, event)
@@ -112,11 +117,66 @@ function mediaFactory(data) {
 			mediaModal.style.display = "flex";
 			const titleModal = document.getElementById("modal-title-id");
 			titleModal.textContent = event.target.dataset.title;
-			const imageModal = document.getElementById("modal-image");
+			positionActuelle = parseInt(event.target.dataset.position)
+			const imageModal = document.getElementById("modal-image-id");
 			imageModal.setAttribute("src", event.target.currentSrc)
-			const arrow = document 
 		})
 	}
 
 		return getInfoMedia
 	}
+
+
+	const next = document.getElementById('next')
+
+	next.addEventListener("click", function(event){
+		const imageModal = document.getElementById("modal-image-id")
+		const titleModal = document.getElementById("modal-title-id")
+
+		if (positionActuelle + 1 >= allMedias.length) {
+			positionActuelle = 0
+		} else{
+			positionActuelle = positionActuelle + 1
+		}
+		// positionActuelle = positionActuelle + 1;
+
+		console.log(positionActuelle)
+		console.log(allMedias)
+		console.log(allMedias[positionActuelle]);
+		console.log(allMedias.length)
+
+		titleModal.textContent = allMedias[positionActuelle].title;		
+		const picture = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].image}`
+		imageModal.setAttribute("src", picture);
+	})
+
+	const last = document.getElementById('last')
+
+	
+	last.addEventListener("click", function(event){
+		const imageModal = document.getElementById("modal-image-id")
+		const titleModal = document.getElementById("modal-title-id")
+
+		if(positionActuelle - 1 < 0){
+			positionActuelle = allMedias.length - 1
+		} else {
+			positionActuelle = positionActuelle - 1
+		}
+		// positionActuelle = positionActuelle - 1;
+
+		console.log(positionActuelle)
+		console.log(allMedias)
+		console.log(allMedias[positionActuelle]);
+
+		titleModal.textContent = allMedias[positionActuelle].title;		
+		const picture = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].image}`
+		imageModal.setAttribute("src", picture);
+	})
+
+	// next.addEventListener("click", function(event)){
+		
+	// }
+
+
+
+

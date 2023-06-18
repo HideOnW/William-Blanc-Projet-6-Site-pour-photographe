@@ -211,7 +211,7 @@ form input {
     align-self: flex-start;
 }
 
-#modal-image{
+#modal-image-id{
     width: 900px;
     height: 900px;
     object-fit: cover;
