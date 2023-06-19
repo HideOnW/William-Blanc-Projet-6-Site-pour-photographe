@@ -68,26 +68,38 @@ function photographerFactory(data) {
 
 function mediaFactory(data) {
 
-	const { id, photographerId, title, image, likes, date, price, position} = data;
+	const { id, photographerId, title, image, likes, date, price, position, video} = data;
 
 	const picture = `assets/photographers/${photographerId}/${image}`;
+	const videosrc =  `assets/photographers/${photographerId}/${video}`;
 
 	function getInfoMedia() {
 		allMedias.push(data)
 		const a = document.createElement('a');
 		// a.setAttribute("onclick", "openLightbox()")
 		const article = document.createElement('article');
-		// if (image === true){
-		// 	const image1 = document.createElement('img');	
-		// 	image1.setAttribute("onclick", "displayMedia()");
-		// 	image1.setAttribute("src", picture);
-		// 	console.log("nope")
-		// 	return image1
-		// }
-		const image = document.createElement('img');	
-		image.setAttribute("src", picture)
-		image.setAttribute("data-title", title)
-		image.setAttribute("data-position", position)
+		if (image){
+			const image1 = document.createElement('img');	
+			image1.setAttribute("src", picture)
+			image1.setAttribute("data-title", title)
+			image1.setAttribute("data-position", position)
+		article.appendChild(image1)
+		addEventListernerToMedia(image1)
+			console.log("nope")
+		} else {
+			const video = document.createElement('video')
+			video.setAttribute("src", videosrc)
+			video.setAttribute("control", "true")
+			video.setAttribute("data-title", title)
+			video.setAttribute("data-position", position)
+		article.appendChild(video)
+		addEventListernerToMedia(video)
+	
+		}
+		// const image = document.createElement('img');	
+		// image.setAttribute("src", picture)
+		// image.setAttribute("data-title", title)
+		// image.setAttribute("data-position", position)
 		// image.setAttribute("data-", picture)
 		const div1 = document.createElement('div');
 		const h3 = document.createElement('h3');
@@ -98,14 +110,12 @@ function mediaFactory(data) {
 		image2.setAttribute("src", "assets/icons/heart.svg")	
 		p.textContent = likes
 		a.appendChild(article)
-		article.appendChild(image)
 		article.appendChild(div1)
 		div1.appendChild(h3)
 		div1.appendChild(div2)
 		div2.appendChild(p)
 		div2.appendChild(image2)
 
-		addEventListernerToMedia(image)
 		return a
 		}
 
@@ -115,11 +125,56 @@ function mediaFactory(data) {
 			console.log(mediaElement, event)
 			const mediaModal = document.getElementById("media_modal")
 			mediaModal.style.display = "flex";
+			const body = document.body;
+			body.style.height = '100vh';
+ 			body.style.overflowY = 'hidden';
 			const titleModal = document.getElementById("modal-title-id");
 			titleModal.textContent = event.target.dataset.title;
 			positionActuelle = parseInt(event.target.dataset.position)
-			const imageModal = document.getElementById("modal-image-id");
-			imageModal.setAttribute("src", event.target.currentSrc)
+
+			const mediaDisplay = document.getElementById("media-display")
+
+
+			let imageModal = document.getElementById("modal-image-id")
+			let videoModal = document.getElementById("modal-video-id")
+			if (event.target.localName === "img"){
+				
+			
+				imageModal.setAttribute("src", event.target.currentSrc)
+				imageModal.style.display  = "block"
+				videoModal.style.display  = "none"
+
+
+			// if (imageModal){
+			// 	imageModal.remove();
+			// }
+			// 	 imageModal = document.createElement('img')
+			// 	imageModal.setAttribute("id", "modal-image-id")
+			// 	mediaDisplay.appendChild(imageModal)
+				
+				
+			} else {
+				
+				videoModal.setAttribute("src", event.target.currentSrc)
+				imageModal.style.display  = "none"
+				videoModal.style.display  = "block"
+
+
+
+			// if (videoModal){
+			// 	videoModal.remove();
+			// }
+			// 	videoModal = document.createElement('video')
+			// 	videoModal.setAttribute("id", "modal-image-id")
+			// 	videoModal.setAttribute("autoplay", "true")
+
+			// 	mediaDisplay.appendChild(videoModal)
+			}
+
+			
+
+			// const imageModal = document.getElementById("modal-image-id");
+			// imageModal.setAttribute("src", event.target.currentSrc)
 		})
 	}
 
