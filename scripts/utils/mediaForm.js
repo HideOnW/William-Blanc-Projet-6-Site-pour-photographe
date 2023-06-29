@@ -16,3 +16,4 @@ function closeModalMedia() {
  	body.style.overflowY = 'initial';
 }
 
+

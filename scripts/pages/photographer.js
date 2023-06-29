@@ -36,7 +36,6 @@ async function displayData(photographer, idUrl, medias) {
     const photographersSection = document.querySelector(".photograph-header");
     const photographerModel = photographerFactory(photographer);
     const infoPhotographe = photographerModel.getinfoPhotographe();
-    // photographersSection.appendChild(infoPhotographe)
 
 
 //Media 
@@ -46,6 +45,10 @@ async function displayData(photographer, idUrl, medias) {
         const infoMedia = mediaModel();
         mediaSection.appendChild(infoMedia);
     })
+    
+//Likes 
+    const likesAdd = likesFactory(photographer, medias)
+
     return (photographersSection)
 }
 

@@ -69,6 +69,10 @@ function photographerFactory(data) {
 function mediaFactory(data) {
 
 	const { id, photographerId, title, image, likes, date, price, position, video} = data;
+	
+	console.log(likes)
+
+
 
 	const picture = `assets/photographers/${photographerId}/${image}`;
 	const videosrc =  `assets/photographers/${photographerId}/${video}`;
@@ -85,7 +89,6 @@ function mediaFactory(data) {
 			image1.setAttribute("data-position", position)
 		article.appendChild(image1)
 		addEventListernerToMedia(image1)
-			console.log("nope")
 		} else {
 			const video = document.createElement('video')
 			video.setAttribute("src", videosrc)
@@ -96,18 +99,16 @@ function mediaFactory(data) {
 		addEventListernerToMedia(video)
 	
 		}
-		// const image = document.createElement('img');	
-		// image.setAttribute("src", picture)
-		// image.setAttribute("data-title", title)
-		// image.setAttribute("data-position", position)
-		// image.setAttribute("data-", picture)
 		const div1 = document.createElement('div');
 		const h3 = document.createElement('h3');
 		h3.textContent = title
 		const div2 = document.createElement('div');
 		const p = document.createElement('p')
+		
 		const image2 = document.createElement('img')
 		image2.setAttribute("src", "assets/icons/heart.svg")	
+		image2.setAttribute("isLiked", "0")	
+
 		p.textContent = likes
 		a.appendChild(article)
 		article.appendChild(div1)
@@ -116,13 +117,34 @@ function mediaFactory(data) {
 		div2.appendChild(p)
 		div2.appendChild(image2)
 
+		oneMoreLike(image2, likes, p)
+		// addLikes(likes)
+
 		return a
 		}
+	
+	
+	function oneMoreLike (image2, likes, p) {
+		image2.addEventListener("click",function(event){
+			const isLiked = event.target.attributes.isliked.value
+			if (isLiked === "0"){
+			likes = likes + 1	
+			p.textContent = likes
+			event.target.attributes.isliked.value = "1"
+			}
+
+	// function addLikes (likes){
+		
+
+	// }
+		})
+
+	}
 
 
 	function addEventListernerToMedia (mediaElement) {
 		mediaElement.addEventListener("click",function(event){
-			console.log(mediaElement, event)
+			// console.log(mediaElement, event)
 			const mediaModal = document.getElementById("media_modal")
 			mediaModal.style.display = "flex";
 			const body = document.body;
@@ -143,38 +165,14 @@ function mediaFactory(data) {
 				imageModal.setAttribute("src", event.target.currentSrc)
 				imageModal.style.display  = "block"
 				videoModal.style.display  = "none"
-
-
-			// if (imageModal){
-			// 	imageModal.remove();
-			// }
-			// 	 imageModal = document.createElement('img')
-			// 	imageModal.setAttribute("id", "modal-image-id")
-			// 	mediaDisplay.appendChild(imageModal)
-				
 				
 			} else {
 				
 				videoModal.setAttribute("src", event.target.currentSrc)
 				imageModal.style.display  = "none"
 				videoModal.style.display  = "block"
-
-
-
-			// if (videoModal){
-			// 	videoModal.remove();
-			// }
-			// 	videoModal = document.createElement('video')
-			// 	videoModal.setAttribute("id", "modal-image-id")
-			// 	videoModal.setAttribute("autoplay", "true")
-
-			// 	mediaDisplay.appendChild(videoModal)
 			}
 
-			
-
-			// const imageModal = document.getElementById("modal-image-id");
-			// imageModal.setAttribute("src", event.target.currentSrc)
 		})
 	}
 
@@ -186,6 +184,7 @@ function mediaFactory(data) {
 
 	next.addEventListener("click", function(event){
 		const imageModal = document.getElementById("modal-image-id")
+		const videoModal = document.getElementById("modal-video-id")
 		const titleModal = document.getElementById("modal-title-id")
 
 		if (positionActuelle + 1 >= allMedias.length) {
@@ -198,18 +197,32 @@ function mediaFactory(data) {
 		console.log(positionActuelle)
 		console.log(allMedias)
 		console.log(allMedias[positionActuelle]);
-		console.log(allMedias.length)
 
 		titleModal.textContent = allMedias[positionActuelle].title;		
 		const picture = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].image}`
-		imageModal.setAttribute("src", picture);
+		const video = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].video}`
+
+		if (allMedias[positionActuelle].image){
+				
+			imageModal.setAttribute("src", picture)
+			imageModal.style.display  = "block"
+			videoModal.style.display  = "none"
+
+		} else {
+			
+			videoModal.setAttribute("src", video)
+			imageModal.style.display  = "none"
+			videoModal.style.display  = "block"
+
+		}
 	})
 
-	const last = document.getElementById('last')
+	// const last = document.getElementById('last')
 
 	
 	last.addEventListener("click", function(event){
 		const imageModal = document.getElementById("modal-image-id")
+		const videoModal = document.getElementById("modal-video-id")
 		const titleModal = document.getElementById("modal-title-id")
 
 		if(positionActuelle - 1 < 0){
@@ -225,12 +238,32 @@ function mediaFactory(data) {
 
 		titleModal.textContent = allMedias[positionActuelle].title;		
 		const picture = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].image}`
-		imageModal.setAttribute("src", picture);
+		const video = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].video}`
+
+		if (allMedias[positionActuelle].image){
+				
+			imageModal.setAttribute("src", picture)
+			imageModal.style.display  = "block"
+			videoModal.style.display  = "none"
+
+		} else {
+			
+			videoModal.setAttribute("src", video)
+			imageModal.style.display  = "none"
+			videoModal.style.display  = "block"
+
+		}
 	})
 
 	// next.addEventListener("click", function(event)){
 		
 	// }
+
+	function likesFactory(photograpger){
+		console.log(medias, photograger)
+	}
+	
+
 
 
 
