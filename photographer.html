@@ -9,51 +9,71 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="./index.html" aria-label="Liens page d'acceuil">
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye"/>
+      </a>    
     </header>
-    <main id="main">
+    <main id="main" >
       
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div class="photograph-header" aria-label="info photographe">
+        <button class="contact_button"  onclick="displayModal()" aria-label="Bouton pour ouvrir le formulaire de contact">Contactez-moi</button>
       </div>
 
       <div class="photograph-photo">
         <div class="filtre">
           <p> Filtrer par </p>
-           <div class="filtre_button" onclick="displayFiltre()">Popularité</div>
+          <div class="typeFiltre" aria-label="ouvrir les differents filtres">
+           <div class="filtre_button" onclick="displayFiltre('popularity')" aria-label="trier par popularite">Popularité</div>
+           <div class="whiteline"><br></div>
+           <div class="filtre_button" onclick="displayFiltre('date')" aria-label="trier par date">Date</div>
+           <div class="whiteline"><br></div>
+           <div class="filtre_button" onclick="displayFiltre('title')" aria-label="trier par titre">Titre</div>
+           <img src="./assets/icons/white arrow.svg" class="whitearrow">
+           </div>
         </div>
 
-        <div class="photo">         
+        <div class="photo" id="displayMedia" alt-label="media du photographe"> 
+
         </div>
 
       </div>
 
-      <div id="contact_modal">
+      <div id="contact_modal" aria-label="Formulaire de contact">
         <div class="modal">
           <header>
             <div class="photographer_description"></div>
             <h2 class>Contactez-moi</h2>
             <div class="photographer_photo"></div>
-            <img src="assets/icons/close.svg" onclick="closeModal()">
+            <img src="assets/icons/close.svg" onclick="closeModal()" aria-label="Fermer le formulaire">
           </header>
           <form>
             <div>
               <label>Prénom</label>
-              <input/>
+              <input id="prenom" aria-describedby="Champ pour votre Prénom"/>
               <label>Nom</label>
-              <input/>
+              <input id="Nom" aria-describedby="Champ pour votre Nom"/>
               <label>Email</label>
-              <input/>
-              <label>Votre message </label>
-              <input/>
+              <input id="mail" aria-describedby="Champ pour votre mail"/>
+              <label class="labelMessage">Votre message </label>
+              <textarea class="inputMessage" id="message" aria-describedby="Champ si vous avez un message pour le photographe"></textarea>
             </div>
-            <button class="contact_button">Envoyer</button>
+            <button class="contact_button" id="valid" aria-label="Envoyer votre formulaire"> Envoyer</button>
           </form>
         </div>
       </div>
 
-      <div class="totLikes"></div>
-  
+      <div class="totLikes" aria-label="Total likes du photographe">
+        <div>
+          <p id="addTotalLikes"></p>
+          <img id="coeur">
+        </div>
+        <div>
+          <p id="photographPrice"></p>
+        </div>
+      </div>
+
+
+
       <div id="media_modal">
         <div id="last"></div>
         <div id="media-display">
