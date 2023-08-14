@@ -95,7 +95,7 @@ function mediaFactory(data) {
 			image1.setAttribute("src", picture);
 			image1.setAttribute("data-title", title);
 			image1.setAttribute("data-position", position);
-			image1.setAttribute("alt", "image");
+			image1.setAttribute("alt", title);
 		article.appendChild(image1);
 		addEventListernerToMedia(image1);
 		} else {
