@@ -8,12 +8,6 @@ function displayMedia () { // eslint-disable-line
 
 }
 
-function closeModalMedia() { // eslint-disable-line
-    const mediaModal = document.getElementById("media_modal");
-    mediaModal.style.display = "none";
-    const body = document.body;
-	body.style.height = "initial";
-    body.style.overflowY = "initial";
-}
+
 
 

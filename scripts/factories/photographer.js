@@ -71,6 +71,7 @@ function photographerFactory(data) {
 }
 
 
+let modalKeyboardUnlock = false
 
 // eslint-disable-next-line
 function mediaFactory(data) {
@@ -88,7 +89,6 @@ function mediaFactory(data) {
 		allMedias.push(data);
 		const a = document.createElement("a");
 		a.setAttribute("aria-label", "Ouvrir le carroussel d'image");
-		// a.setAttribute("onclick", "openLightbox()")
 		const article = document.createElement("article");
 		if (image){
 			const image1 = document.createElement("img");	
@@ -106,19 +106,17 @@ function mediaFactory(data) {
 			video.setAttribute("data-position", position);
 		article.appendChild(video);
 		addEventListernerToMedia(video);
-	
 		}
+
 		const div1 = document.createElement("div");
 		const h3 = document.createElement("h3");
 		h3.textContent = title;
 		h3.setAttribute("aria-label", "Le titre de l'image est " + title);
 		const div2 = document.createElement("div");
 		const p = document.createElement("p");
-		
 		const image2 = document.createElement("img");
 		image2.setAttribute("src", "assets/icons/heart.svg");
 		image2.setAttribute("isLiked", "0");
-
 		p.textContent = likes;
 		a.appendChild(article);
 		article.appendChild(div1);
@@ -128,7 +126,6 @@ function mediaFactory(data) {
 		div2.appendChild(image2);
 
 		oneMoreLike(image2, likes, p);
-		// addLikes(likes)
 
 		return a;
 		}
@@ -143,10 +140,6 @@ function mediaFactory(data) {
 			event.target.attributes.isliked.value = "1";
 			}
 
-	// function addLikes (likes){
-		
-
-	// }
 		});
 
 	}
@@ -168,7 +161,6 @@ function mediaFactory(data) {
 			let videoModal = document.getElementById("modal-video-id");
 			if (event.target.localName === "img"){
 				
-			
 				imageModal.setAttribute("src", event.target.currentSrc);
 				imageModal.style.display  = "block";
 				videoModal.style.display  = "none";
@@ -180,16 +172,42 @@ function mediaFactory(data) {
 				videoModal.style.display  = "block";
 			}
 
+			modalKeyboardUnlock = true
+
 		});
 	}
 
 		return getInfoMedia;
 	}
 
+	function closeModalMedia() { // eslint-disable-line
+		const mediaModal = document.getElementById("media_modal");
+		mediaModal.style.display = "none";
+		const body = document.body;
+		body.style.height = "initial";
+		body.style.overflowY = "initial";
+		modalKeyboardUnlock = false
+	}
 
+	document.addEventListener("keydown", (e) => {
+		console.log("keydown", e, modalKeyboardUnlock)
+		if (modalKeyboardUnlock === true && e.key === 'ArrowRight'){
+			nextMedia(e)
+		} else if (modalKeyboardUnlock === true && e.key === 'ArrowLeft') {
+			lastMedia(e)
+		} else if (modalKeyboardUnlock === true && e.key === "Escape"){
+			closeModalMedia()
+		}
+	})
+
+	
 	const next = document.getElementById("next");
 // eslint-disable-next-line
 	next.addEventListener("click", function(event){
+		nextMedia(event)
+	});
+
+	function nextMedia(event){
 		const imageModal = document.getElementById("modal-image-id");
 		const videoModal = document.getElementById("modal-video-id");
 		const titleModal = document.getElementById("modal-title-id");
@@ -199,7 +217,6 @@ function mediaFactory(data) {
 		} else{
 			positionActuelle = positionActuelle + 1;
 		}
-		// positionActuelle = positionActuelle + 1;
 
 		titleModal.textContent = allMedias[positionActuelle].title;		
 		const picture = `assets/photographers/${allMedias[positionActuelle].photographerId}/${allMedias[positionActuelle].image}`;
@@ -218,12 +235,17 @@ function mediaFactory(data) {
 			videoModal.style.display  = "block";
 
 		}
-	});
+	}
 
-	// const last = document.getElementById("last")
+	
+
 
 	// eslint-disable-next-line
 	last.addEventListener("click", function(event){
+		lastMedia(event)
+	});
+
+	function lastMedia(event){
 		const imageModal = document.getElementById("modal-image-id");
 		const videoModal = document.getElementById("modal-video-id");
 		const titleModal = document.getElementById("modal-title-id");
@@ -233,7 +255,6 @@ function mediaFactory(data) {
 		} else {
 			positionActuelle = positionActuelle - 1;
 		}
-		// positionActuelle = positionActuelle - 1;
 
 
 		titleModal.textContent = allMedias[positionActuelle].title;		
@@ -249,11 +270,10 @@ function mediaFactory(data) {
 			imageModal.style.display  = "none";
 			videoModal.style.display  = "block";
 		}
-	});
+	}
 
 // eslint-disable-next-line
 	function likesFactory(data){
-		// const divLikes = document.querySelector(".totLikes")
 		const pLikes = document.getElementById("addTotalLikes");
 		pLikes.textContent = data.totalLikes;
 		const imageCoeur = document.getElementById("coeur");
@@ -262,8 +282,3 @@ function mediaFactory(data) {
 		pPrice.textContent = data.price + "€ / jour";
 	}
 	
-
-
-
-
-
